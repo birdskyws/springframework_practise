@@ -1,16 +1,19 @@
-package org.birdsky.ioc.interfaces;
+package mooc.birdsky.springframework.ioc.interfaces;
 
+import mooc.birdsky.springframework.ioc.injection.service.InjectionService;
 import org.birdsky.base.UnitTestBase;
-import org.birdsky.ioc.injection.service.InjectionService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 
+/***
+ * 测试 设置/构造注入
+ */
 @RunWith(BlockJUnit4ClassRunner.class)
 public class TestInjection extends UnitTestBase {
     public TestInjection(){
         //super("classpath*:spring-injection.xml");
-        super("classpath*:spring-injection-constructor.xml");
+        super("classpath*:/ioc/spring-injection-constructor.xml");
     }
 
     @Test
@@ -18,6 +21,7 @@ public class TestInjection extends UnitTestBase {
     {
         InjectionService service = super.getBean("injectionService");
         service.save("你好");
+        System.out.println(service.getClass().getName());
     }
     @Test
     public void TestInjectionWithConstructor()

@@ -1,17 +1,15 @@
-package org.birdsky.autowire;
+package mooc.birdsky.springframework.ioc.autowire;
 
 import org.birdsky.base.UnitTestBase;
-import org.birdsky.ioc.autowire.AutowireService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
-import org.springframework.beans.factory.annotation.Autowire;
 
 @RunWith(BlockJUnit4ClassRunner.class)
 public class AutowireTest extends UnitTestBase {
     public AutowireTest()
     {
-        super("classpath*:spring-autowire.xml");
+        super("classpath*:/ioc/spring-autowire.xml");
     }
     @Test
     public void TestAutowirebyName(){

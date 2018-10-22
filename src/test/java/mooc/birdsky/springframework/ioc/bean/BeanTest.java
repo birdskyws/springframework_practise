@@ -1,12 +1,14 @@
-package org.birdsky.bean;
+package mooc.birdsky.springframework.ioc.bean;
 
 import org.birdsky.base.UnitTestBase;
-import org.birdsky.ioc.bean.Scope;
 import org.junit.Test;
 
+/**
+ * 测试scope ，创建单例和多例。
+ */
 public class BeanTest extends UnitTestBase {
     public BeanTest(){
-        super("classpath*:spring-scope.xml");
+        super("classpath*:/ioc/spring-scope.xml");
     }
 
     @Test

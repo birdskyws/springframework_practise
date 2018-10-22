@@ -1,17 +1,17 @@
-package org.birdsky.aware;
+package mooc.birdsky.springframework.ioc.aware;
 
 import org.birdsky.base.UnitTestBase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
-//import org.birdsky.ioc.aware.ApplicationContextAWARE;
-import org.birdsky.ioc.aware.ApplicationContextAWARE;
+//import mooc.birdsky.springframework.ioc.aware.ApplicationContextAWARE;
+
 
 @RunWith(BlockJUnit4ClassRunner.class)
 public class AwareTest extends UnitTestBase {
     public AwareTest()
     {
-        super("classpath*:spring-aware.xml");
+        super("classpath*:/ioc/spring-aware.xml");
     }
 
     @Test
