@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-    default-autowire="constructor" <!--"byType"-->>
-    <bean id="autowireService" class="org.birdsky.ioc.autowire.AutowireServiceImpl"></bean>
-    <bean <!--id="autowireDAO2"--> class="org.birdsky.ioc.autowire.AutowireDAOImpl"></bean>
+    default-autowire="constructor" >
+    <bean id="autowireService" class="mooc.birdsky.springframework.ioc.autowire.AutowireServiceImpl"></bean>
+    <bean  class="mooc.birdsky.springframework.ioc.autowire.AutowireDAOImpl"></bean>
 </beans>

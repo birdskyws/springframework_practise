@@ -2,8 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-    <!-- bean id="lifeCycle" class="org.birdsky.ioc.bean.LifeCycle" init-method="start" destroy-method="stop" -->
-    <bean id="lifeCycle" class="org.birdsky.ioc.bean.LifeCycle">
+    <bean id="injectionService" class="mooc.birdsky.springframework.ioc.injection.service.InjectionServiceImpl">
+        <property name="injectionDAO" ref="injectionDAO"></property>
     </bean>
+    <bean id="injectionDAO" class="mooc.birdsky.springframework.ioc.injection.dao.InjectionDAOImpl"></bean>
 </beans>

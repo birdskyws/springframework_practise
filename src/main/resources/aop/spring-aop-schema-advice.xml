@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="moocAspect" class="mooc.birdsky.springframework.aop.schema.MoocAspect"></bean>
+    <bean id="aspectBiz" class="mooc.birdsky.springframework.aop.schema.AspectBiz.AspectBiz"></bean>
+    <bean id="usageTrack" class="mooc.birdsky.springframework.aop.schema.tracking.DefaultUsageTrack" />
+    <!-- 定义aop -->
+    <aop:config>
+        <!--定义一个切面，一个切面通常完成一项功能，如日志、安全等-->
+        <aop:aspect id="moocAspectAOP" ref="moocAspect">
+            <!--定义一个切入点，可以用多种通配符匹配切入点-->
+            <aop:pointcut id="moocPointcut"
+                          expression="execution(* mooc.birdsky.springframework.aop.schema.AspectBiz.AspectBiz.*(..))" />
+            <!--advice 通知（作者称它为注入函数）,-->
+            <!--advice 注入点定义 before/after-returning/after-throwing/after-->
+            <aop:before method="aopbefore" pointcut-ref="moocPointcut" />
+            <aop:after-returning method="aopafterReturn" pointcut-ref="moocPointcut" />
+            <aop:after-throwing method="aopafterThrow" pointcut-ref="moocPointcut" />
+            <aop:after method="aopafterFinal" pointcut-ref="moocPointcut"  />
+            <!-- 处理pointcut中抛出异常的函数-->
+            <aop:around method="aopround" pointcut-ref="moocPointcut" />
+            <!--除了用pointcut-ref设置注入点，可用直接用pointcut设置注入点-->
+            <aop:around  method="initround"
+                          pointcut="execution(* mooc.birdsky.springframework.aop.schema.AspectBiz.AspectBiz.init(String,int)) and args(bizName,times)" />
+            <aop:declare-parents
+                    types-matching="mooc.birdsky.springframework.aop.schema.AspectBiz.*(+)"
+                    implement-interface="mooc.birdsky.springframework.aop.schema.Introductions.Fit"
+                    default-impl="mooc.birdsky.springframework.aop.schema.Introductions.FitImpl" />
+
+            <aop:declare-parents
+                    types-matching="mooc.birdsky.springframework.aop.schema.AspectBiz.AspectBiz"
+                    implement-interface="mooc.birdsky.springframework.aop.schema.tracking.UsageTrack"
+                    default-impl="mooc.birdsky.springframework.aop.schema.tracking.DefaultUsageTrack" />
+           <!--<aop:before method="recordUsage" pointcut="mooc.birdsky.springframework.aop.schema.AspectBiz.AspectBiz() and this(usageTracked)" />-->
+</aop:aspect>
+</aop:config>
+
+</beans>

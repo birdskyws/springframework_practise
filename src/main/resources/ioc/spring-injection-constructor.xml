@@ -2,12 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="injectionService" class="org.birdsky.ioc.injection.service.InjectionServiceImpl">
-        <!--
-         --   constructor injectionServiceImpl 构造函数设置参数
-         --   name 属性 构造函数传入的参数名，injectionDAO2是参数名
-        -->
+    <bean id="injectionService" class="mooc.birdsky.springframework.ioc.injection.service.InjectionServiceImpl">
+         <!--constructor injectionServiceImpl 构造函数设置参数-->
+         <!--name 属性 构造函数传入的参数名，injectionDAO2是参数-->
         <constructor-arg name="injectionDAO2" ref="injectionDAO"></constructor-arg>
     </bean>
-    <bean id="injectionDAO" class="org.birdsky.ioc.injection.dao.InjectionDAOImpl"></bean>
+    <bean id="injectionDAO" class="mooc.birdsky.springframework.ioc.injection.dao.InjectionDAOImpl"></bean>
 </beans>

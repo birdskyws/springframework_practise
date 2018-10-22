@@ -2,8 +2,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="injectionService" class="org.birdsky.ioc.injection.service.InjectionServiceImpl">
-        <property name="injectionDAO" ref="injectionDAO"></property>
-    </bean>
-    <bean id="injectionDAO" class="org.birdsky.ioc.injection.dao.InjectionDAOImpl"></bean>
+    <!--<bean id="scope" class="mooc.birdsky.springframework.ioc.bean.Scope" scope="prototype"></bean>-->
+    <bean id="scope" class="mooc.birdsky.springframework.ioc.bean.Scope" scope="singleton"></bean>
 </beans>

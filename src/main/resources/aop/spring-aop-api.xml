@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--<bean id="bizLogicImplTarget" class="mooc.birdsky.springframework.aop.api.BizLogicImpl" />-->
+
+    <bean id="pointcutBean" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedNames">
+            <list>
+                <value>sa*</value>
+                <!-- 匹配函数名 -->
+            </list>
+        </property>
+    </bean>
+
+    <bean id="birdskyAfterAdvice" class="mooc.birdsky.springframework.aop.api.BirdskyAfterAdvice" />
+    <bean id="birdskyBeforeAdvice" class="mooc.birdsky.springframework.aop.api.BirdskyBeforeAdvice" />
+
+    <bean id="defaultAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="advice" ref="birdskyBeforeAdvice" />
+        <property name="pointcut" ref="pointcutBean" />
+    </bean>
+
+    <bean id="bizLogicImpl" class="org.springframework.aop.framework.ProxyFactoryBean" >
+        <property name="target">
+            <!--<ref bean="bizLogicImplTarget" />-->
+            <!--采用直接定义bean，而不是通过ref的方式。-->
+            <!--采用外部定义bean，这个bean可以被直接获取，这样获取的bean是没有被添加切入点的。-->
+            <bean class="mooc.birdsky.springframework.aop.api.BizLogicImpl" />
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <!--<value>defaultAdvisor</value>-->
+                <value>birdskyAfterAdvice</value>
+                <!-- interceptorNames  advice 默认绑定到全部函数上 -->
+            </list>
+        </property>
+    </bean>
+</beans>
